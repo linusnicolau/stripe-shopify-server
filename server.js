@@ -30,6 +30,9 @@ app.get('/', (req, res) => {
 app.post('/crear-checkout', async (req, res) => {
     const { nombre, precio, id } = req.body;
 
+    const moneda = paisAMoneda[pais] || 'eur';
+    const shippingRateId = costesEnvioPorPais[pais] || 'shr_default';
+
     // Validación de datos
     if (!nombre || !precio) {
         return res.status(400).json({ error: 'Faltan datos del producto' });
@@ -42,7 +45,7 @@ app.post('/crear-checkout', async (req, res) => {
             payment_method_types: ['card'],
             line_items: [{
                 price_data: {
-                    currency: 'eur',
+                    currency: moneda,
                     product_data: { 
                         name: nombre,
                         description: `ID: ${id}`
@@ -55,6 +58,11 @@ app.post('/crear-checkout', async (req, res) => {
             shipping_address_collection: {
                 allowed_countries: ['ES', 'FR', 'DE', 'US']
             },
+            shipping_options: [
+                {
+                    shipping_rate: shippingRateId
+                }
+            ],
             success_url: 'https://successpage',
             cancel_url: 'https://cancelpage' + id
         });
