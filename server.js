@@ -9,15 +9,6 @@ app.use(cors({
     origin: '*' // En producción, especifica tu dominio de Shopify
 }));
 
-
-const costesEnvioPorPais = {
-    'ES': 'shr_1SMpZEPzhoxcP320Yho9KLwO',
-    'FR': 'shr_1DEF456_francia',
-    'DE': 'shr_1GHI789_alemania',
-    'US': 'shr_1SMpZEPzhoxcP320Yho9KLwO',
-    'GB': 'shr_1MNO345_uk'
-};
-
 // Ruta de health check
 app.get('/', (req, res) => {
     res.json({ 
@@ -56,7 +47,7 @@ app.post('/crear-checkout', async (req, res) => {
                 allowed_countries: ['ES', 'FR', 'DE', 'US']
             },
             shipping_options: [
-                { shipping_rate: 'shr_1SMpZEPzhoxcP320Yho9KLwO' }, //España
+                { shipping_rate: 'shr_1SMpaRPzhoxcP320mWZJqTk0' }, //España
                 { shipping_rate: 'shr_1SMpZEPzhoxcP320Yho9KLwO' }, // Usa
             ],
             success_url: 'https://successpage',
