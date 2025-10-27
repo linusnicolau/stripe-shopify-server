@@ -28,7 +28,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/crear-checkout', async (req, res) => {
-    const { nombre, precio, id } = req.body;
+    const { nombre, precio, id, pais } = req.body;
 
     const shippingRateId = costesEnvioPorPais[pais] || 'shr_default';
 
