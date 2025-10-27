@@ -9,6 +9,15 @@ app.use(cors({
     origin: '*' // En producción, especifica tu dominio de Shopify
 }));
 
+
+const costesEnvioPorPais = {
+    'ES': 'shr_1SMpZEPzhoxcP320Yho9KLwO',
+    'FR': 'shr_1DEF456_francia',
+    'DE': 'shr_1GHI789_alemania',
+    'US': 'shr_1SMpZEPzhoxcP320Yho9KLwO',
+    'GB': 'shr_1MNO345_uk'
+};
+
 // Ruta de health check
 app.get('/', (req, res) => {
     res.json({ 
