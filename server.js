@@ -28,9 +28,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/crear-checkout', async (req, res) => {
-    const { nombre, precio, id, pais } = req.body;
-
-    const shippingRateId = costesEnvioPorPais[pais] || 'shr_default';
+    const { nombre, precio, id } = req.body;
 
     // Validación de datos
     if (!nombre || !precio) {
@@ -58,9 +56,8 @@ app.post('/crear-checkout', async (req, res) => {
                 allowed_countries: ['ES', 'FR', 'DE', 'US']
             },
             shipping_options: [
-                {
-                    shipping_rate: shippingRateId
-                }
+                { shipping_rate: 'shr_1SMpZEPzhoxcP320Yho9KLwO' }, //España
+                { shipping_rate: 'shr_1SMpZEPzhoxcP320Yho9KLwO' }, // Usa
             ],
             success_url: 'https://successpage',
             cancel_url: 'https://cancelpage' + id
